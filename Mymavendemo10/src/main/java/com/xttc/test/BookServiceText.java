@@ -1,0 +1,30 @@
+package com.xttc.test;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import com.xttc.pojo.Book;
+import com.xttc.service.BookService;
+
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = {"classpath:application-service.xml", "classpath:application-dao.xml"})
+public class BookServiceText {
+	@Autowired
+	public BookService bookService;
+	
+	@Test
+	public void findBookById() {
+		Book book = bookService.findBookById(1);
+		System.out.println("图书id：" + book.getId());
+		System.out.println("图书名称：" + book.getName());
+		System.out.println("作者：" + book. getAuthor());
+		System.out.println("出版社：" + book. getPress());
+
+	}
+	
+	
+
+}

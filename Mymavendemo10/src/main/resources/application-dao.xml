@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context 
+	http://www.springframework.org/schema/context/spring-context.xsd">
+	
+	<context:property-placeholder location="classpath:jdbc.properties"/>
+	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+		<property name="driverClassName" value="${database.driver}"/>
+		<property name="url" value="${database.url}"/>
+		<property name="username" value="${database.username}"/>
+		<property name="password" value="${database.password}"/>
+	</bean>
+	<!-- 创建SQLSessionFactory对象 -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean" >
+		<!-- 数据源 -->
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+	
+	<!--  扫dao包，创建动态代理对象，会自动存储到spring IOC容器中 -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<!--指定要扫描的dao 的包  -->
+		<property name="basePackage" value="com.xttc.dao"/>
+	</bean>
+
+	
+</beans>

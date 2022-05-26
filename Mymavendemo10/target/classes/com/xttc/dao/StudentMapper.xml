@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN
+" "mybatis-3-mapper.dtd" >
+<mapper  namespace="com.xttc.dao.StudentMapper">
+ 
+
+ 	<!-- 查询学生信息 -->
+	<select id="findAll" resultType="com.xttc.pojo.Student" >
+		select * from student 
+	</select>
+
+	<insert id="addStudent" parameterType="com.xttc.pojo.Student">
+		INSERT INTO student VALUES (null,#{name},#{age},#{sex},#{classs});
+	</insert>
+  
+</mapper>
